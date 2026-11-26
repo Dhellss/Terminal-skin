@@ -1,0 +1,130 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
+# PULSAR//WAVE — neutron star / gold beams prompt
+#
+#   󰥛 PULSAR  dhell@archbox ∙ ~/projects/terminal-skin ∙  main ∾∾∾∾∾∾ ∙ MEM 34% ∙ IP 192.168.1.24 ∙ 22:35
+#  ╰─◉❯
+
+add_newline = true
+continuation_prompt = '[∙∙ ](#8a8068)'
+
+format = """
+[ 󰥛 PULSAR ](bold fg:#030611 bg:#ffb300)[](fg:#ffb300) \
+$username$hostname$directory$git_branch$git_status\
+$python$nodejs$rust$golang$java$c$docker_context\
+$fill\
+$cmd_duration$memory_usage$localip$battery$time
+[╰─](#4b4b4f)$character"""
+
+[fill]
+symbol = '∾'
+style = '#17203a'
+
+[username]
+show_always = true
+style_user = 'bold #ffb300'
+style_root = 'bold blink #ff5a4d'
+format = '[$user]($style)'
+
+[hostname]
+ssh_only = false
+ssh_symbol = ' 󰌗'
+style = '#f5e6c8'
+format = '[@](#8a8068)[$hostname$ssh_symbol ]($style)'
+
+[directory]
+style = 'bold #ff7a00'
+read_only = ' 󰌾'
+read_only_style = '#ff5a4d'
+truncation_length = 3
+truncate_to_repo = true
+truncation_symbol = '…/'
+format = '[∙ ](#8a8068)[$path]($style)[$read_only]($read_only_style)[ ](#8a8068)'
+
+[git_branch]
+symbol = ' '
+style = '#3de0ff'
+format = '[∙ ](#8a8068)[$symbol$branch ]($style)'
+
+[git_status]
+style = '#ff5a4d'
+format = '([⟦$all_status$ahead_behind⟧ ]($style))'
+
+[character]
+success_symbol = '[◉](bold #ffb300)[❯](bold #ff7a00)'
+error_symbol = '[✗](bold #ff5a4d)[❯](bold #ff7a00)'
+vimcmd_symbol = '[❮](bold #3de0ff)'
+
+# ── readouts (right side of the top line) ──
+[cmd_duration]
+min_time = 2000
+style = '#ffcb4d'
+format = ' [󰔟 $duration]($style)'
+
+[memory_usage]
+disabled = false
+threshold = -1
+style = '#f5e6c8'
+format = '[ ∙ ](#4b4b4f)[MEM $ram_pct]($style)'
+
+[localip]
+disabled = false
+ssh_only = false
+style = '#3de0ff'
+format = '[ ∙ ](#4b4b4f)[IP $localipv4]($style)'
+
+[battery]
+full_symbol = '󰁹 '
+charging_symbol = '󰂄 '
+discharging_symbol = '󰂃 '
+format = '[ ∙ ](#4b4b4f)[$symbol$percentage]($style)'
+
+[[battery.display]]
+threshold = 20
+style = 'bold #ff5a4d'
+
+[[battery.display]]
+threshold = 100
+style = '#9be564'
+
+[time]
+disabled = false
+time_format = '%H:%M'
+style = 'bold #ffb300'
+format = '[ ∙ ](#4b4b4f)[$time]($style)'
+
+# ── languages (only inside project folders) ──
+[python]
+symbol = '󰌠 '
+style = '#ffcb4d'
+format = '[$symbol$version(\($virtualenv\))]($style) '
+
+[nodejs]
+symbol = '󰎙 '
+style = '#9be564'
+format = '[$symbol$version]($style) '
+
+[rust]
+symbol = '󱘗 '
+style = '#ff5a4d'
+format = '[$symbol$version]($style) '
+
+[golang]
+symbol = '󰟓 '
+style = '#3de0ff'
+format = '[$symbol$version]($style) '
+
+[java]
+symbol = '󰬷 '
+style = '#ff5a4d'
+format = '[$symbol$version]($style) '
+
+[c]
+symbol = '󰙱 '
+style = '#3de0ff'
+format = '[$symbol$version]($style) '
+
+[docker_context]
+symbol = '󰡨 '
+style = '#3de0ff'
+format = '[$symbol$context]($style) '

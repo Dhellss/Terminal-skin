@@ -46,13 +46,27 @@ if command -v alacritty >/dev/null; then
 fi
 
 # 3) Hook into ~/.zshrc (adds one line, does not overwrite) ─
-LINE='[[ -f ~/.config/ghostshell/ghostshell.zsh ]] && source ~/.config/ghostshell/ghostshell.zsh'
 touch "$HOME/.zshrc"
-if ! grep -qF "ghostshell/ghostshell.zsh" "$HOME/.zshrc"; then
+cp "$HOME/.zshrc" "$HOME/.zshrc.bak-$STAMP"
+
+# switch off any other Terminal-skin theme so two themes never stack
+for other in "redops/redops.zsh" "nebula-drift/nebula-drift.zsh" "void-signal/void-signal.zsh" "pulsar-wave/pulsar-wave.zsh" "seraph-os/seraph-os.zsh" "cloud9/cloud9.zsh" "eden-root/eden-root.zsh" "ascend-sh/ascend-sh.zsh" "halo-ctl/halo-ctl.zsh" "inferno-sh/inferno-sh.zsh" "abyss-ctl/abyss-ctl.zsh"; do
+  re="${other//./[.]}"
+  if grep -qE "^[[:space:]]*[^#[:space:]].*${re}" "$HOME/.zshrc"; then
+    sed -i --follow-symlinks -E "\\|${re}|{/^[[:space:]]*#/!s/^/# /}" "$HOME/.zshrc"
+    say "disabled ${other%%/*} in ~/.zshrc (commented out, not deleted)"
+  fi
+done
+
+LINE='[[ -f ~/.config/ghostshell/ghostshell.zsh ]] && source ~/.config/ghostshell/ghostshell.zsh'
+if grep -qE '^[[:space:]]*\[\[ -f ~/\.config/ghostshell/ghostshell\.zsh' "$HOME/.zshrc"; then
+  say "~/.zshrc already loads GHOST//SHELL"
+elif grep -qE '^[[:space:]]*#+[[:space:]]*\[\[ -f ~/\.config/ghostshell/ghostshell\.zsh' "$HOME/.zshrc"; then
+  sed -i --follow-symlinks -E 's|^[[:space:]]*#+[[:space:]]*(\[\[ -f ~/\.config/ghostshell/ghostshell\.zsh)|\1|' "$HOME/.zshrc"
+  say "re-enabled GHOST//SHELL in ~/.zshrc"
+else
   printf '\n# GHOST//SHELL\n%s\n' "$LINE" >> "$HOME/.zshrc"
   say "added GHOST//SHELL to ~/.zshrc"
-else
-  say "~/.zshrc already sources GHOST//SHELL"
 fi
 
 # 4) Default shell → zsh ───────────────────────────────────

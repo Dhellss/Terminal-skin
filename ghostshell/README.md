@@ -2,6 +2,8 @@
 
 Green-on-black, Matrix-style terminal setup.
 
+![GHOST//SHELL preview](../previews/01-ghostshell.png)
+
 | Part | Tool | File |
 |---|---|---|
 | Terminal + colors | kitty (Alacritty optional) | `kitty/kitty.conf`, `alacritty/alacritty.toml` |

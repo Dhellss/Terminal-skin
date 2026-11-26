@@ -1,0 +1,130 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
+# SERAPH//OS — gold & sapphire / six wings prompt
+#
+#  󰛓 SERAPH dhell@archbox · ~/projects/terminal-skin ·  main ┈┈┈┈┈┈ · MEM 34% · IP 192.168.1.24 · 22:35
+#  ╰─†›
+
+add_newline = true
+continuation_prompt = '[∙∙ ](#8f876d)'
+
+format = """
+[](fg:#d8b13a)[󰛓 SERAPH](bold fg:#0c0d12 bg:#d8b13a)[](fg:#d8b13a) \
+$username$hostname$directory$git_branch$git_status\
+$python$nodejs$rust$golang$java$c$docker_context\
+$fill\
+$cmd_duration$memory_usage$localip$battery$time
+[╰─](#57523d)$character"""
+
+[fill]
+symbol = '┈'
+style = '#2a2616'
+
+[username]
+show_always = true
+style_user = 'bold #d8b13a'
+style_root = 'bold blink #e8707a'
+format = '[$user]($style)'
+
+[hostname]
+ssh_only = false
+ssh_symbol = ' 󰌗'
+style = '#ece4d0'
+format = '[@](#8f876d)[$hostname$ssh_symbol ]($style)'
+
+[directory]
+style = 'bold #f0e6c8'
+read_only = ' 󰌾'
+read_only_style = '#e8707a'
+truncation_length = 3
+truncate_to_repo = true
+truncation_symbol = '…/'
+format = '[· ](#8f876d)[$path]($style)[$read_only]($read_only_style)[ ](#8f876d)'
+
+[git_branch]
+symbol = ' '
+style = '#6f8fd8'
+format = '[· ](#8f876d)[$symbol$branch ]($style)'
+
+[git_status]
+style = '#e8707a'
+format = '([⟨$all_status$ahead_behind⟩ ]($style))'
+
+[character]
+success_symbol = '[†](bold #d8b13a)[›](bold #6f8fd8)'
+error_symbol = '[✗](bold #e8707a)[›](bold #6f8fd8)'
+vimcmd_symbol = '[❮](bold #6f8fd8)'
+
+# ── readouts (right side of the top line) ──
+[cmd_duration]
+min_time = 2000
+style = '#f0cc5a'
+format = ' [󰔟 $duration]($style)'
+
+[memory_usage]
+disabled = false
+threshold = -1
+style = '#ece4d0'
+format = '[ · ](#57523d)[MEM $ram_pct]($style)'
+
+[localip]
+disabled = false
+ssh_only = false
+style = '#6f8fd8'
+format = '[ · ](#57523d)[IP $localipv4]($style)'
+
+[battery]
+full_symbol = '󰁹 '
+charging_symbol = '󰂄 '
+discharging_symbol = '󰂃 '
+format = '[ · ](#57523d)[$symbol$percentage]($style)'
+
+[[battery.display]]
+threshold = 20
+style = 'bold #e8707a'
+
+[[battery.display]]
+threshold = 100
+style = '#8fd694'
+
+[time]
+disabled = false
+time_format = '%H:%M'
+style = 'bold #d8b13a'
+format = '[ · ](#57523d)[$time]($style)'
+
+# ── languages (only inside project folders) ──
+[python]
+symbol = '󰌠 '
+style = '#f0cc5a'
+format = '[$symbol$version(\($virtualenv\))]($style) '
+
+[nodejs]
+symbol = '󰎙 '
+style = '#8fd694'
+format = '[$symbol$version]($style) '
+
+[rust]
+symbol = '󱘗 '
+style = '#e8707a'
+format = '[$symbol$version]($style) '
+
+[golang]
+symbol = '󰟓 '
+style = '#6f8fd8'
+format = '[$symbol$version]($style) '
+
+[java]
+symbol = '󰬷 '
+style = '#e8707a'
+format = '[$symbol$version]($style) '
+
+[c]
+symbol = '󰙱 '
+style = '#6f8fd8'
+format = '[$symbol$version]($style) '
+
+[docker_context]
+symbol = '󰡨 '
+style = '#6f8fd8'
+format = '[$symbol$context]($style) '

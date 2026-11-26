@@ -7,12 +7,7 @@ Red-and-amber palette, decrypt boot animation, crosshair fastfetch logo, and a l
 
 ## Preview
 
-```
-╔══════════════════════════════════════════════════╗
-║  [ ⌖ OPS ] dhell@archbox  ~/projects  main ⟫    ║
-║  MEM 42%  IP 192.168.1.5  22:14  ◉               ║
-╚══════════════════════════════════════════════════╝
-```
+![RED//OPS preview](../previews/02-redops.png)
 
 Boot animation: decrypt-style character reveal → fastfetch system info  
 Prompt: two-line HUD with git, memory, IP, time  
@@ -52,7 +47,7 @@ Prompt: two-line HUD with git, memory, IP, time
 
 ```bash
 git clone https://github.com/Dhellss/Terminal-skin
-cd Terminal-skin/red-ops
+cd Terminal-skin/redops
 chmod +x install.sh
 ./install.sh
 ```
@@ -81,12 +76,12 @@ The installer will:
 
 **Disable boot animation:**
 ```bash
-echo 'export OPS_BOOT=off' >> ~/.config/redops/redops.zsh
+sed -i '1i export OPS_BOOT=off' ~/.config/redops/redops.zsh
 ```
 
 **Quick boot (skip decrypt frames):**
 ```bash
-echo 'export OPS_BOOT=quick' >> ~/.config/redops/redops.zsh
+sed -i '1i export OPS_BOOT=quick' ~/.config/redops/redops.zsh
 ```
 
 **Uninstall:**
