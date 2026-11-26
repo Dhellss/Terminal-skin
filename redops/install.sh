@@ -48,18 +48,24 @@ chmod +x "$CFG/redops/ops-boot.sh"
 touch "$HOME/.zshrc"
 cp "$HOME/.zshrc" "$HOME/.zshrc.bak-$STAMP"
 
-# turn off GHOST//SHELL if it was installed (so the two themes don't stack)
-if grep -q "ghostshell/ghostshell.zsh" "$HOME/.zshrc"; then
-  sed -i '/ghostshell\/ghostshell.zsh/s/^/# /' "$HOME/.zshrc"
-  say "disabled GHOST//SHELL in ~/.zshrc (commented out, not deleted)"
-fi
+# switch off any other Terminal-skin theme so two themes never stack
+for other in "ghostshell/ghostshell.zsh" "nebula-drift/nebula-drift.zsh" "void-signal/void-signal.zsh" "pulsar-wave/pulsar-wave.zsh" "seraph-os/seraph-os.zsh" "cloud9/cloud9.zsh" "eden-root/eden-root.zsh" "ascend-sh/ascend-sh.zsh" "halo-ctl/halo-ctl.zsh" "inferno-sh/inferno-sh.zsh" "abyss-ctl/abyss-ctl.zsh"; do
+  re="${other//./[.]}"
+  if grep -qE "^[[:space:]]*[^#[:space:]].*${re}" "$HOME/.zshrc"; then
+    sed -i --follow-symlinks -E "\\|${re}|{/^[[:space:]]*#/!s/^/# /}" "$HOME/.zshrc"
+    say "disabled ${other%%/*} in ~/.zshrc (commented out, not deleted)"
+  fi
+done
 
 LINE='[[ -f ~/.config/redops/redops.zsh ]] && source ~/.config/redops/redops.zsh'
-if ! grep -qF "redops/redops.zsh" "$HOME/.zshrc"; then
+if grep -qE '^[[:space:]]*\[\[ -f ~/\.config/redops/redops\.zsh' "$HOME/.zshrc"; then
+  say "~/.zshrc already loads RED//OPS"
+elif grep -qE '^[[:space:]]*#+[[:space:]]*\[\[ -f ~/\.config/redops/redops\.zsh' "$HOME/.zshrc"; then
+  sed -i --follow-symlinks -E 's|^[[:space:]]*#+[[:space:]]*(\[\[ -f ~/\.config/redops/redops\.zsh)|\1|' "$HOME/.zshrc"
+  say "re-enabled RED//OPS in ~/.zshrc"
+else
   printf '\n# RED//OPS\n%s\n' "$LINE" >> "$HOME/.zshrc"
   say "added RED//OPS to ~/.zshrc"
-else
-  say "~/.zshrc already loads RED//OPS"
 fi
 
 # 4) Default shell → zsh ───────────────────────────────────
