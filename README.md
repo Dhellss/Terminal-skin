@@ -38,7 +38,7 @@ One installer per theme. Your old configs are always backed up first.
 
 ## Gallery
 
-### Originals
+### OLDS
 
 <table>
 <tr>
