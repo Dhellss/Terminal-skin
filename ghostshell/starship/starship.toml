@@ -1,0 +1,102 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
+# GHOST//SHELL prompt — Kali-style two-line prompt
+#
+#  ╭─[dhell@arch]─[ ~/projects/system]  main [!1] took 3s        22:35:07
+#  ╰─❯
+
+add_newline = true
+
+format = """
+[╭─](bold #00ff9c)$username$hostname[─](bold #00ff9c)$directory$git_branch$git_status$python$nodejs$rust$golang$java$c$docker_context$cmd_duration
+[╰─](bold #00ff9c)$character"""
+
+right_format = "$status$time"
+
+[username]
+show_always = true
+style_user = "bold #00ff9c"
+style_root = "bold #ff2e63"
+format = "[\\[](bold #00ff9c)[$user]($style)"
+
+[hostname]
+ssh_only = false
+ssh_symbol = " "
+style = "bold #00e5ff"
+format = "[@](bold #ff2e63)[$ssh_symbol$hostname]($style)[\\]](bold #00ff9c)"
+
+[directory]
+style = "bold #00e5ff"
+read_only = " 󰌾"
+read_only_style = "#ff2e63"
+truncation_length = 3
+truncate_to_repo = true
+truncation_symbol = "…/"
+format = "[\\[](bold #00ff9c)[ $path]($style)[$read_only]($read_only_style)[\\]](bold #00ff9c) "
+
+[git_branch]
+symbol = " "
+style = "bold #b026ff"
+format = "[$symbol$branch]($style) "
+
+[git_status]
+style = "bold #ff2e63"
+format = "([\\[$all_status$ahead_behind\\]]($style) )"
+
+[character]
+success_symbol = "[❯](bold #00ff9c)"
+error_symbol = "[❯](bold #ff2e63)"
+vimcmd_symbol = "[❮](bold #00e5ff)"
+
+[cmd_duration]
+min_time = 2000
+style = "#e6ff00"
+format = "[took $duration]($style) "
+
+[status]
+disabled = false
+symbol = "✗ "
+style = "bold #ff2e63"
+format = "[$symbol$status]($style) "
+
+[time]
+disabled = false
+time_format = "%H:%M:%S"
+style = "#1f4d36"
+format = "[$time]($style)"
+
+# ── Languages (lalabas lang kapag nasa project folder ka) ──
+[python]
+symbol = " "
+style = "#e6ff00"
+format = "[$symbol$version(\\($virtualenv\\))]($style) "
+
+[nodejs]
+symbol = " "
+style = "#5cffbe"
+format = "[$symbol$version]($style) "
+
+[rust]
+symbol = " "
+style = "#ff5c85"
+format = "[$symbol$version]($style) "
+
+[golang]
+symbol = " "
+style = "#00e5ff"
+format = "[$symbol$version]($style) "
+
+[java]
+symbol = " "
+style = "#ff5c85"
+format = "[$symbol$version]($style) "
+
+[c]
+symbol = " "
+style = "#5cd1ff"
+format = "[$symbol$version]($style) "
+
+[docker_context]
+symbol = " "
+style = "#00b3ff"
+format = "[$symbol$context]($style) "

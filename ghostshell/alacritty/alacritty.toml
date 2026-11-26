@@ -1,0 +1,53 @@
+# GHOST//SHELL — Alacritty version (optional, kung Alacritty gamit mo)
+# ~/.config/alacritty/alacritty.toml
+
+[general]
+live_config_reload = true
+
+[window]
+padding = { x = 14, y = 14 }
+opacity = 0.90
+blur = true
+decorations = "None"
+dynamic_title = true
+
+[font]
+normal = { family = "JetBrainsMono Nerd Font", style = "Regular" }
+bold = { family = "JetBrainsMono Nerd Font", style = "Bold" }
+size = 11.5
+
+[cursor]
+style = { shape = "Block", blinking = "On" }
+blink_interval = 500
+
+[colors.primary]
+background = "#050a07"
+foreground = "#00ff9c"
+
+[colors.cursor]
+text = "#050a07"
+cursor = "#00ff9c"
+
+[colors.selection]
+text = "#050a07"
+background = "#00ff9c"
+
+[colors.normal]
+black   = "#0b1a12"
+red     = "#ff2e63"
+green   = "#00ff9c"
+yellow  = "#e6ff00"
+blue    = "#00b3ff"
+magenta = "#b026ff"
+cyan    = "#00e5ff"
+white   = "#b8ffd9"
+
+[colors.bright]
+black   = "#1f4d36"
+red     = "#ff5c85"
+green   = "#5cffbe"
+yellow  = "#f2ff66"
+blue    = "#5cd1ff"
+magenta = "#cf73ff"
+cyan    = "#66f0ff"
+white   = "#e8fff3"

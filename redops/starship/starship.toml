@@ -1,0 +1,125 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
+# RED//OPS — HUD prompt
+#
+#  ⌖ OPS  dhell@arch ⟫ ~/projects/system ⟫  main ───────── MEM 34% · IP 192.168.1.24 · 22:35
+#  └─▶
+
+add_newline = true
+
+format = """
+[ ⌖ OPS ](bold fg:#0a0506 bg:#ff1f3d) \
+$username$hostname$directory$git_branch$git_status\
+$python$nodejs$rust$golang$java$c$docker_context\
+$fill\
+$cmd_duration$memory_usage$localip$battery$time
+[└─](#3d1419)$character"""
+
+[fill]
+symbol = "─"
+style = "#3d1419"
+
+[username]
+show_always = true
+style_user = "bold #ff1f3d"
+style_root = "bold blink #ffb000"
+format = "[$user]($style)"
+
+[hostname]
+ssh_only = false
+ssh_symbol = "  "
+style = "#e8d6d6"
+format = "[@](#8a5a60)[$hostname$ssh_symbol]($style) "
+
+[directory]
+style = "bold #ffb000"
+read_only = " 󰌾"
+read_only_style = "#ff1f3d"
+truncation_length = 3
+truncate_to_repo = true
+truncation_symbol = "…/"
+format = "[⟫ ](#8a5a60)[$path]($style)[$read_only]($read_only_style) "
+
+[git_branch]
+symbol = " "
+style = "#2de2e6"
+format = "[⟫ ](#8a5a60)[$symbol$branch]($style) "
+
+[git_status]
+style = "#ff5c70"
+format = "([⟦$all_status$ahead_behind⟧]($style) )"
+
+[character]
+success_symbol = "[▶](bold #ff1f3d)"
+error_symbol = "[✗ ▶](bold #ffb000)"
+vimcmd_symbol = "[◀](bold #2de2e6)"
+
+# ── HUD readouts (right side of the top line) ──
+[cmd_duration]
+min_time = 2000
+style = "#ffb000"
+format = " [⏱ $duration]($style)"
+
+[memory_usage]
+disabled = false
+threshold = -1
+style = "#e8d6d6"
+format = " [MEM $ram_pct]($style)"
+
+[localip]
+disabled = false
+ssh_only = false
+style = "#2de2e6"
+format = " [IP $localipv4]($style)"
+
+[battery]
+format = " [$symbol$percentage]($style)"
+full_symbol = "󰁹 "
+charging_symbol = "󰂄 "
+discharging_symbol = "󰂃 "
+
+[[battery.display]]
+threshold = 100
+style = "#9cff57"
+
+[time]
+disabled = false
+time_format = "%H:%M"
+style = "bold #ff1f3d"
+format = " [$time]($style)"
+
+# ── Languages (only inside project folders) ──
+[python]
+symbol = " "
+style = "#ffc94d"
+format = "[$symbol$version(\\($virtualenv\\))]($style) "
+
+[nodejs]
+symbol = " "
+style = "#9cff57"
+format = "[$symbol$version]($style) "
+
+[rust]
+symbol = " "
+style = "#ff5c70"
+format = "[$symbol$version]($style) "
+
+[golang]
+symbol = " "
+style = "#2de2e6"
+format = "[$symbol$version]($style) "
+
+[java]
+symbol = " "
+style = "#ff5c70"
+format = "[$symbol$version]($style) "
+
+[c]
+symbol = " "
+style = "#8fb0ff"
+format = "[$symbol$version]($style) "
+
+[docker_context]
+symbol = " "
+style = "#5b8cff"
+format = "[$symbol$context]($style) "
