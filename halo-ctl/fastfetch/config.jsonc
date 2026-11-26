@@ -1,0 +1,73 @@
+{
+  "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
+  "logo": {
+    "type": "file",
+    "source": "~/.config/fastfetch/logo.txt",
+    "color": {
+      "1": "#a0c8e0",
+      "2": "#5f7f98",
+      "3": "#f5d77a",
+      "4": "#f4faff"
+    },
+    "padding": {
+      "top": 3,
+      "left": 2,
+      "right": 5
+    }
+  },
+  "display": {
+    "separator": "  ",
+    "color": {
+      "keys": "#e8f4ff",
+      "output": "#eef6ff"
+    },
+    "key": {
+      "width": 11
+    },
+    "percent": {
+      "type": 3,
+      "color": {
+        "green": "#e8f4ff",
+        "yellow": "#f5d77a",
+        "red": "#ff7a85"
+      }
+    },
+    "bar": {
+      "char": {
+        "elapsed": "━",
+        "total": "─"
+      },
+      "border": {
+        "left": "⟨",
+        "right": "⟩"
+      },
+      "color": {
+        "total": "#1a2430",
+        "border": "#7d8c9c"
+      },
+      "width": 12
+    }
+  },
+  "modules": [
+    {"type": "custom", "format": "─⟨ AURA ⟩───────────────────────────────", "outputColor": "#a0c8e0"},
+    {"type": "title", "key": "○ NODE", "format": "{user-name}@{host-name}"},
+    {"type": "os", "key": "○ OS", "format": "{name} {arch}"},
+    {"type": "kernel", "key": "○ KERNEL"},
+    {"type": "uptime", "key": "○ UPTIME"},
+    {"type": "packages", "key": "○ PKGS"},
+    {"type": "shell", "key": "○ SHELL"},
+    {"type": "wm", "key": "○ WM"},
+    {"type": "terminal", "key": "○ TERM"},
+    {"type": "custom", "format": "─⟨ CORE ⟩───────────────────────────────", "outputColor": "#a0c8e0"},
+    {"type": "cpu", "key": "○ CPU", "format": "{name} ×{cores-logical}"},
+    {"type": "gpu", "key": "○ GPU", "format": "{name}"},
+    {"type": "memory", "key": "○ RAM"},
+    {"type": "disk", "key": "○ DISK", "folders": "/"},
+    {"type": "battery", "key": "○ POWER"},
+    {"type": "custom", "format": "─⟨ RADIANCE ⟩───────────────────────────", "outputColor": "#a0c8e0"},
+    {"type": "localip", "key": "○ LAN", "keyColor": "#f5d77a"},
+    {"type": "wifi", "key": "○ WIFI", "format": "{ssid}", "keyColor": "#f5d77a"},
+    "break",
+    {"type": "colors", "symbol": "circle", "paddingLeft": 0}
+  ]
+}

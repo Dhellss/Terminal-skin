@@ -1,0 +1,131 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
+# INFERNO//SH — lava orange / ember / hellfire prompt
+#
+#   󰈸 INFERNO  dhell@archbox ▸ ~/projects/terminal-skin ▸  main  ≈≈≈≈≈≈ ▸ MEM 34% ▸ 22:35
+#  ╰─❯❯❯
+
+add_newline = true
+continuation_prompt = '[∙∙ ](#a8683f)'
+
+format = """
+[ 󰈸 INFERNO ](bold fg:#070200 bg:#ff4500)[](fg:#ff4500 bg:#2a0a00)\
+$username$hostname$directory$git_branch$git_status\
+$python$nodejs$rust$golang$java$c$docker_context\
+[](fg:#2a0a00) \
+$fill\
+$cmd_duration$memory_usage$localip$battery$time
+[╰─](#65361d)$character"""
+
+[fill]
+symbol = '≈'
+style = '#2e0d02'
+
+[username]
+show_always = true
+style_user = 'bold fg:#ff4500 bg:#2a0a00'
+style_root = 'bold blink fg:#ff2a00 bg:#2a0a00'
+format = '[ $user]($style)'
+
+[hostname]
+ssh_only = false
+ssh_symbol = ' 󰌗'
+style = 'fg:#ffd9b3 bg:#2a0a00'
+format = '[@](fg:#a8683f bg:#2a0a00)[$hostname$ssh_symbol ]($style)'
+
+[directory]
+style = 'bold fg:#ffb020 bg:#2a0a00'
+read_only = ' 󰌾'
+read_only_style = 'fg:#ff2a00 bg:#2a0a00'
+truncation_length = 3
+truncate_to_repo = true
+truncation_symbol = '…/'
+format = '[▸ ](fg:#a8683f bg:#2a0a00)[$path]($style)[$read_only]($read_only_style)[ ](fg:#a8683f bg:#2a0a00)'
+
+[git_branch]
+symbol = ' '
+style = 'fg:#ff2a00 bg:#2a0a00'
+format = '[▸ ](fg:#a8683f bg:#2a0a00)[$symbol$branch ]($style)'
+
+[git_status]
+style = 'fg:#ffb020 bg:#2a0a00'
+format = '([⟦$all_status$ahead_behind⟧ ]($style))'
+
+[character]
+success_symbol = '[❯](bold #ffb020)[❯](bold #ff4500)[❯](bold #ff2a00)'
+error_symbol = '[✗](bold #ff2a00)[❯](bold #ff4500)[❯](bold #a31800)'
+vimcmd_symbol = '[❮](bold #ff2a00)'
+
+# ── readouts (right side of the top line) ──
+[cmd_duration]
+min_time = 2000
+style = '#ffb020'
+format = ' [󰔟 $duration]($style)'
+
+[memory_usage]
+disabled = false
+threshold = -1
+style = '#ffd9b3'
+format = '[ ▸ ](#65361d)[MEM $ram_pct]($style)'
+
+[localip]
+disabled = false
+ssh_only = false
+style = '#ffb020'
+format = '[ ▸ ](#65361d)[IP $localipv4]($style)'
+
+[battery]
+full_symbol = '󰁹 '
+charging_symbol = '󰂄 '
+discharging_symbol = '󰂃 '
+format = '[ ▸ ](#65361d)[$symbol$percentage]($style)'
+
+[[battery.display]]
+threshold = 20
+style = 'bold #ff2a00'
+
+[[battery.display]]
+threshold = 100
+style = '#c2d94c'
+
+[time]
+disabled = false
+time_format = '%H:%M'
+style = 'bold #ff4500'
+format = '[ ▸ ](#65361d)[$time]($style)'
+
+# ── languages (only inside project folders) ──
+[python]
+symbol = '󰌠 '
+style = 'fg:#ffb020 bg:#2a0a00'
+format = '[$symbol$version(\($virtualenv\)) ]($style)'
+
+[nodejs]
+symbol = '󰎙 '
+style = 'fg:#c2d94c bg:#2a0a00'
+format = '[$symbol$version ]($style)'
+
+[rust]
+symbol = '󱘗 '
+style = 'fg:#ff2a00 bg:#2a0a00'
+format = '[$symbol$version ]($style)'
+
+[golang]
+symbol = '󰟓 '
+style = 'fg:#ffb020 bg:#2a0a00'
+format = '[$symbol$version ]($style)'
+
+[java]
+symbol = '󰬷 '
+style = 'fg:#ff2a00 bg:#2a0a00'
+format = '[$symbol$version ]($style)'
+
+[c]
+symbol = '󰙱 '
+style = 'fg:#ffb020 bg:#2a0a00'
+format = '[$symbol$version ]($style)'
+
+[docker_context]
+symbol = '󰡨 '
+style = 'fg:#ffb020 bg:#2a0a00'
+format = '[$symbol$context ]($style)'
