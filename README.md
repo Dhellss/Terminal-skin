@@ -91,11 +91,14 @@ One installer per theme. Your old configs are always backed up first.
 ## Quick Install
 
 ```bash
-# Clone the repo
+# 1. Install git (skip if you already have it)
+sudo pacman -S --needed git
+
+# 2. Clone the repo
 git clone https://github.com/Dhellss/Terminal-skin
 cd Terminal-skin
 
-# Pick a theme and run its installer
+# 3. Pick a theme and run its installer
 cd nebula-drift
 chmod +x install.sh
 ./install.sh
@@ -103,10 +106,17 @@ chmod +x install.sh
 
 Then open a new kitty window.
 
-**Switching themes:** just run another theme's `install.sh`. It switches off whichever Terminal-skin theme was active (commented out in `~/.zshrc`, never deleted) and backs up your configs before replacing them.
+**Already cloned it before?** Update first instead of cloning again:
 
-**Uninstalling (themes 03–12):** run `./uninstall.sh` inside the theme folder. It restores your previous configs from the newest `.bak-*` files.
+```bash
+cd ~/Terminal-skin && git pull
+```
 
+**One-line install** (same thing, change `nebula-drift` to any theme folder):
+
+```bash
+sudo pacman -S --needed git && { [ -d ~/Terminal-skin ] && git -C ~/Terminal-skin pull || git clone https://github.com/Dhellss/Terminal-skin ~/Terminal-skin; } && cd ~/Terminal-skin/nebula-drift && bash install.sh && kitty --detach zsh
+```
 ---
 
 ## What every theme includes
